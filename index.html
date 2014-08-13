@@ -36,21 +36,35 @@
         <span class="blc"></span><span class="trc"></span>
         </div>
         <article class="markdown-body">
-          <h2>
-<a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h2>
+          <h1>
+<a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h1>
 
 <p>I love challenges. Soon after I started working at a new company my PM expressed his wish for a particularly intricate feature to be included in the web application we were developing. This feature basically consisted in a JavaScript autosuggest control on steroids, which instantly got me excited since it seemed like a really cool tool to [try to] implement (actually what my PM was wishing for was some sort of Visual Studio's IntelliSense, and therefore I had to lower his expectations about it). </p>
 
+<h1>
+<a name="challenge-accepted" class="anchor" href="#challenge-accepted"><span class="octicon octicon-link"></span></a>Challenge accepted</h1>
+
+<p>"Oh c'mon, yet another autosuggest control? That is nothing new in the JS world!" I hear you say. You're right, there are literally dozens of really cool tools already implemented out there, such as jQuery's own <a href="http://jqueryui.com/autocomplete/">Autocomplete</a>, <a href="https://twitter.github.io/typeahead.js/">typeahead.js</a>, or <a href="http://ivaynberg.github.io/select2/">select2</a>, to mention just a few. But, even with their particular features and differences, they all work pretty much the same: provide the user with a list of possible values as she types, and allow her to select one of them. See what's missing? Select <strong>ONE</strong> of them.</p>
+
 <h2>
-<a name="challenge-accepted" class="anchor" href="#challenge-accepted"><span class="octicon octicon-link"></span></a>Challenge accepted</h2>
+<a name="intellisense-wannabe" class="anchor" href="#intellisense-wannabe"><span class="octicon octicon-link"></span></a>IntelliSense wannabe</h2>
 
-<p>"Oh c'mon, yet another autosuggest control? That is nothing new in the JS world!" I hear you say. You're right, there are dozens of really cool tools already implemented out there, such as jQuery's own <a href="http://jqueryui.com/autocomplete/">Autocomplete</a>, <a href="https://twitter.github.io/typeahead.js/">typeahead.js</a>, or <a href="http://ivaynberg.github.io/select2/">select2</a>, to mention just a few. </p>
+<p>If you've used Excel, an IDE, or the console of pretty much any browser's developer tools, you know what <a href="http://en.wikipedia.org/wiki/Intelligent_code_completion">intelligent code completion</a> is. I wanted my control to work similarly, providing this suggestion and autocompletion functionality not once but permanently. </p>
 
-<p>//TODO: what's missing?</p>
+<h1>
+<a name="implementation" class="anchor" href="#implementation"><span class="octicon octicon-link"></span></a>Implementation</h1>
 
 <p>So I started looking at the peak of the mountain, wondering where the heck I could start climbing it from. I turned to Google for some inspiration to get me rolling and I found exactly what I needed. I could not believe my eyes, it was JavaScript genius <a href="http://www.nczonline.net/">Nicholas C. Zakas</a> coming to my rescue, again!</p>
 
-<p>Back in 2003 Mr. Zakas published a great article on <a href="http://oak.cs.ucla.edu/cs144/projects/javascript/suggest1.html">how to create an autosuggest Textbox with JavaScript</a>, followed up by parts <a href="http://oak.cs.ucla.edu/cs144/projects/javascript/suggest2.html">2</a> and <a href="http://oak.cs.ucla.edu/cs144/projects/javascript/suggest3.html">3</a>.</p>
+<p>Several years back Mr. Zakas published a great article on <a href="http://oak.cs.ucla.edu/cs144/projects/javascript/suggest1.html">how to create an autosuggest Textbox with JavaScript</a>, followed up by parts <a href="http://oak.cs.ucla.edu/cs144/projects/javascript/suggest2.html">2</a> and <a href="http://oak.cs.ucla.edu/cs144/projects/javascript/suggest3.html">3</a>. I started building my autosuJSt control around Nicholas' source code, so a huge deal of the credit goes to him. Thanks Nick!</p>
+
+<h1>
+<a name="shut-up-already-how-does-it-work" class="anchor" href="#shut-up-already-how-does-it-work"><span class="octicon octicon-link"></span></a>Shut up already. How does it work?</h1>
+
+<p>First of all I have to warn you I messed the originally-very-simple code by adding some dependencies. My bad, but I'm sure you can deal with it.</p>
+
+<h1>
+<a name="demo" class="anchor" href="#demo"><span class="octicon octicon-link"></span></a>Demo</h1>
         </article>
       </div>
     </div>
