@@ -1,0 +1,72 @@
+body{
+	background: #e73827;
+	background: -moz-linear-gradient(top,  #e73827 0%, #fcb141 74%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e73827), color-stop(74%,#fcb141));
+	background: -webkit-linear-gradient(top,  #e73827 0%,#fcb141 74%);
+	background: -o-linear-gradient(top,  #e73827 0%,#fcb141 74%);
+	background: -ms-linear-gradient(top,  #e73827 0%,#fcb141 74%);
+	background: linear-gradient(to bottom,  #e73827 0%,#fcb141 74%);
+}
+.title{
+	margin-bottom: 10px !important;
+	font-family: 'Vast Shadow' !important;
+	font-weight: normal !important;
+	text-shadow: 6px 6px 4px #333;
+	font-size: 74px !important;
+	margin-top: 50px !important;
+	color: beige;
+}
+.tagline{
+	text-align: center;
+	color: #333 !important;
+	font-family: Ubuntu;
+	text-shadow: -1px 1px 5px beige;
+	font-size: 19px !important;
+	font-style: italic;
+}
+a.code{
+	padding-left: 0 !important;
+	background: none !important;
+}
+.inner a{
+	font-family: Ubuntu;
+	color: beige;
+}
+.markdown-body h1, .markdown-body h2, .markdown-body h3{
+	font-family: Kreon !important;
+}
+.markdown-body h1{
+	font-size: 30px !important;
+}
+.markdown-body h2, .markdown-body h3{
+	color: #444;
+}
+.markdown-body p{
+	font-family: Ubuntu !important;
+}
+.download-bar{
+	margin: -12px -46px 20px !important;
+}
+.body p{
+	text-align: justify;
+}
+.main{
+	background-image: url(../images/bg.png);
+	background-repeat: repeat repeat;
+	background-position: center center;
+	border: 1px dashed #ddd;
+	box-shadow: 0 0 0 3px #f4f2e9, 0 0 0 5px #ddd, 0 0 0 10px #f4f2e9, 0 0 2px 10px #eee;
+}
+.footer{
+	background-color: #333;
+	color: #fff !important;
+	padding-top: 10px;
+	margin-top: 80px;
+}
+.footer .owner{
+	float: left;
+}
+.footer .creds{
+	float: right;
+	text-align: right;
+}

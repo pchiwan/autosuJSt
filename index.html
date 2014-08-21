@@ -8,7 +8,14 @@
 
   <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen">
   <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+  <link rel="stylesheet" href="stylesheets/autosujst.css">
+  <!--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Megrim">-->
+  <!--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Sofadi+One">-->
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Vast+Shadow">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Kreon">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Ubuntu">
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
   <script type="text/javascript" src="javascripts/script.js"></script>
 
   <title>AutosuJSt</title>
@@ -20,64 +27,68 @@
 
 <body>
 
-  <div class="wrapper">
-    <header>
-      <h1 class="title">AutosuJSt</h1>
-    </header>
-    <div id="container">
+  <div class="row-fluid">
+    <div class="row-fluid">
+      <h1 class="title">autosuJSt</h1>
       <p class="tagline">An autosuggest control on steroids</p>
-      <div id="main" role="main">
-        <div class="download-bar">
-        <div class="inner">
-          <a href="https://github.com/pchiwan/autosuJSt/tarball/master" class="download-button tar"><span>Download</span></a>
-          <a href="https://github.com/pchiwan/autosuJSt/zipball/master" class="download-button zip"><span>Download</span></a>
-          <a href="https://github.com/pchiwan/autosuJSt" class="code">View AutosuJSt on GitHub</a>
+    </div>
+    <div class="body row-fluid">
+      <div class="span8 offset2">
+        <div id="main" class="main">
+          <div class="download-bar">
+          <div class="inner">
+            <a href="https://github.com/pchiwan/autosuJSt/tarball/master" class="download-button tar"><span>Download</span></a>
+            <a href="https://github.com/pchiwan/autosuJSt/zipball/master" class="download-button zip"><span>Download</span></a>
+            <a href="https://github.com/pchiwan/autosuJSt" class="code">View AutosuJSt on GitHub</a>
+          </div>
+          <span class="blc"></span><span class="trc"></span>
+          </div>
+          <article class="markdown-body">
+            <h1>
+  <a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h1>
+
+  <p>I love challenges. Soon after I started working at a new company my PM expressed his wish for a particularly intricate feature to be included in the web application we were developing. This feature basically consisted in a JavaScript autosuggest control on steroids, which instantly got me excited since it seemed like a really cool tool to [try to] implement (actually what my PM was wishing for was some sort of Visual Studio's IntelliSense, and therefore I had to lower his expectations about it). </p>
+
+  <h1>
+  <a name="challenge-accepted" class="anchor" href="#challenge-accepted"><span class="octicon octicon-link"></span></a>Challenge accepted</h1>
+
+  <p>"Oh c'mon, yet another autosuggest control? That is nothing new in the JS world!" I hear you say. You're right, there are literally dozens of really cool tools already implemented out there, such as jQuery's own <a href="http://jqueryui.com/autocomplete/">Autocomplete</a>, <a href="https://twitter.github.io/typeahead.js/">typeahead.js</a>, or <a href="http://ivaynberg.github.io/select2/">select2</a>, to mention just a few. But, even with their particular features and differences, they all work pretty much the same: provide the user with a list of possible values as she types, and allow her to select one of them. See what's missing? Select <strong>ONE</strong> of them.</p>
+
+  <h2>
+  <a name="intellisense-wannabe" class="anchor" href="#intellisense-wannabe"><span class="octicon octicon-link"></span></a>IntelliSense wannabe</h2>
+
+  <p>If you've used Excel, any IDE, or the console of pretty much any browser's developer tools, you know what <a href="http://en.wikipedia.org/wiki/Intelligent_code_completion">intelligent code completion</a> is. I wanted my control to work similarly, providing this suggestion-and.autocompletion functionality not once but permanently. </p>
+
+  <h1>
+  <a name="implementation" class="anchor" href="#implementation"><span class="octicon octicon-link"></span></a>Implementation</h1>
+
+  <p>So I started looking at the peak of the mountain, wondering where the heck I could start climbing it from. I turned to Google for some inspiration to get me rolling and I found exactly what I needed. I could not believe my eyes, it was JavaScript genius <a href="http://www.nczonline.net/">Nicholas C. Zakas</a> coming to my rescue, again!</p>
+
+  <p>Several years ago Mr. Zakas published a great article on <a href="http://oak.cs.ucla.edu/cs144/projects/javascript/suggest1.html">how to create an autosuggest Textbox with JavaScript</a>, followed up by parts <a href="http://oak.cs.ucla.edu/cs144/projects/javascript/suggest2.html">2</a> and <a href="http://oak.cs.ucla.edu/cs144/projects/javascript/suggest3.html">3</a>. I started building my <code>autosuJSt</code> control around Nicholas' source code, so a huge deal of the credit goes to him. Thanks Nick!</p>
+
+  <h1>
+  <a name="shut-up-already-how-does-it-work" class="anchor" href="#shut-up-already-how-does-it-work"><span class="octicon octicon-link"></span></a>Shut up already. How does it work?</h1>
+
+  <p>First of all I have to warn you I messed the originally-very-simple code by adding some dependencies. My bad, but I'm sure you can deal with it.</p>
+
+  <h1>
+  <a name="demo" class="anchor" href="#demo"><span class="octicon octicon-link"></span></a>Demo</h1>
+          </article>
         </div>
-        <span class="blc"></span><span class="trc"></span>
+      </div>
+    </div>  
+    <div class="row-fluid footer">
+      <div class="span8 offset2">
+        <div class="owner">
+        <p><a href="https://github.com/pchiwan" class="avatar"><img src="https://avatars1.githubusercontent.com/u/4695856?v=2&amp;s=60" width="48" height="48"></a> <a href="https://github.com/pchiwan">pchiwan</a> maintains <a href="https://github.com/pchiwan/autosuJSt">AutosuJSt</a></p>
+
+
         </div>
-        <article class="markdown-body">
-          <h1>
-<a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h1>
-
-<p>I love challenges. Soon after I started working at a new company my PM expressed his wish for a particularly intricate feature to be included in the web application we were developing. This feature basically consisted in a JavaScript autosuggest control on steroids, which instantly got me excited since it seemed like a really cool tool to [try to] implement (actually what my PM was wishing for was some sort of Visual Studio's IntelliSense, and therefore I had to lower his expectations about it). </p>
-
-<h1>
-<a name="challenge-accepted" class="anchor" href="#challenge-accepted"><span class="octicon octicon-link"></span></a>Challenge accepted</h1>
-
-<p>"Oh c'mon, yet another autosuggest control? That is nothing new in the JS world!" I hear you say. You're right, there are literally dozens of really cool tools already implemented out there, such as jQuery's own <a href="http://jqueryui.com/autocomplete/">Autocomplete</a>, <a href="https://twitter.github.io/typeahead.js/">typeahead.js</a>, or <a href="http://ivaynberg.github.io/select2/">select2</a>, to mention just a few. But, even with their particular features and differences, they all work pretty much the same: provide the user with a list of possible values as she types, and allow her to select one of them. See what's missing? Select <strong>ONE</strong> of them.</p>
-
-<h2>
-<a name="intellisense-wannabe" class="anchor" href="#intellisense-wannabe"><span class="octicon octicon-link"></span></a>IntelliSense wannabe</h2>
-
-<p>If you've used Excel, an IDE, or the console of pretty much any browser's developer tools, you know what <a href="http://en.wikipedia.org/wiki/Intelligent_code_completion">intelligent code completion</a> is. I wanted my control to work similarly, providing this suggestion and autocompletion functionality not once but permanently. </p>
-
-<h1>
-<a name="implementation" class="anchor" href="#implementation"><span class="octicon octicon-link"></span></a>Implementation</h1>
-
-<p>So I started looking at the peak of the mountain, wondering where the heck I could start climbing it from. I turned to Google for some inspiration to get me rolling and I found exactly what I needed. I could not believe my eyes, it was JavaScript genius <a href="http://www.nczonline.net/">Nicholas C. Zakas</a> coming to my rescue, again!</p>
-
-<p>Several years back Mr. Zakas published a great article on <a href="http://oak.cs.ucla.edu/cs144/projects/javascript/suggest1.html">how to create an autosuggest Textbox with JavaScript</a>, followed up by parts <a href="http://oak.cs.ucla.edu/cs144/projects/javascript/suggest2.html">2</a> and <a href="http://oak.cs.ucla.edu/cs144/projects/javascript/suggest3.html">3</a>. I started building my autosuJSt control around Nicholas' source code, so a huge deal of the credit goes to him. Thanks Nick!</p>
-
-<h1>
-<a name="shut-up-already-how-does-it-work" class="anchor" href="#shut-up-already-how-does-it-work"><span class="octicon octicon-link"></span></a>Shut up already. How does it work?</h1>
-
-<p>First of all I have to warn you I messed the originally-very-simple code by adding some dependencies. My bad, but I'm sure you can deal with it.</p>
-
-<h1>
-<a name="demo" class="anchor" href="#demo"><span class="octicon octicon-link"></span></a>Demo</h1>
-        </article>
+        <div class="creds">
+          <small>This page generated using <a href="http://pages.github.com/">GitHub Pages</a><br>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+        </div>
       </div>
     </div>
-    <footer>
-      <div class="owner">
-      <p><a href="https://github.com/pchiwan" class="avatar"><img src="https://avatars1.githubusercontent.com/u/4695856?v=2&amp;s=60" width="48" height="48"></a> <a href="https://github.com/pchiwan">pchiwan</a> maintains <a href="https://github.com/pchiwan/autosuJSt">AutosuJSt</a></p>
-
-
-      </div>
-      <div class="creds">
-        <small>This page generated using <a href="http://pages.github.com/">GitHub Pages</a><br>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
-      </div>
-    </footer>
   </div>
   <div class="current-section">
     <a href="#top">Scroll to top</a>
