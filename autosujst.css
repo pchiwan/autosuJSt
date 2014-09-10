@@ -1,7 +1,8 @@
 .suggestionsContainer{
-    list-style: none;
+    display: none;
+    list-style: none !important;
     text-align: left;
-    background-color: #fff;
+    background-color: #f8f8f8;
     border: 1px solid #ccc;
     border-radius: 2px;
     position: absolute;
