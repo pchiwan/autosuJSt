@@ -9,14 +9,16 @@
   <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen">
   <link rel="stylesheet" href="stylesheets/pygment_trac.css">
   <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
-  <link rel="stylesheet" href="stylesheets/autosujst.css">
-  <!--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Megrim">-->
-  <!--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Sofadi+One">-->
+  <link rel="stylesheet" href="stylesheets/autosujst.css">  
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Vast+Shadow">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Kreon">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Ubuntu">
+
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-  <script type="text/javascript" src="javascripts/script.js"></script>
+  <script type="text/javascript" src="https://rawgit.com/pchiwan/autosuJSt/master/textareaCaretPosition.js"></script>
+  <script type="text/javascript" src="https://rawgit.com/pchiwan/autosuJSt/master/autosuggest.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>  
+  <script type="text/javascript" src="javascripts/example.js"></script>  
 
   <title>AutosuJSt</title>
   <meta name="description" content="An autosuggest control on steroids">
@@ -69,7 +71,15 @@
   <h1>
   <a name="shut-up-already-how-does-it-work" class="anchor" href="#shut-up-already-how-does-it-work"><span class="octicon octicon-link"></span></a>Shut up already. How does it work?</h1>
 
-  <p>First of all I have to warn you I messed the originally-very-simple code by adding some dependencies. My bad, but I'm sure you can deal with it.</p>
+  <p>First of all I have to warn you that I messed the originally-very-simple code by adding some dependencies (my bad, but I'm sure you can deal with it). First of all you'll need jQuery, and then also my own version of <a href="https://github.com/component/textarea-caret-position">textarea-caret-position</a> by <a href="https://github.com/jonathanong">Jonathan Ong</a> and <a href="https://github.com/dandv">Dan Dascalescu</a> at <a href="https://github.com/component">Components</a>, which extends jQuery with the method <code>getCaretCoords</code>. You can download it from my repository as well.
+  </p>
+
+  <p>Ok, enough about me. Type the name of any USA state into the textarea. Once a state is highlighted in the suggestion list you can either type Tab, Enter, or Right Arrow to accept your selection. And then keep typing! You can throw in as many states as you want. And you can type whatever you please in between states as well: random letters, numbers, even carriage returns! But don't just take my word for it, try it! Go ahead!
+  </p>
+
+  <p class="example">
+    <textarea id="txt1"></textarea>
+  </p>
 
   <h1>
   <a name="demo" class="anchor" href="#demo"><span class="octicon octicon-link"></span></a>Demo</h1>
@@ -85,7 +95,7 @@
 
         </div>
         <div class="creds">
-          <small>This page generated using <a href="http://pages.github.com/">GitHub Pages</a><br>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+          <small>This page generated using <a href="http://pages.github.com/">GitHub Pages</a><br>Theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a> and modified by yours truly</small>
         </div>
       </div>
     </div>

@@ -70,3 +70,14 @@ a.code{
 	float: right;
 	text-align: right;
 }
+.example{
+    width: 600px;
+    text-align: center;
+    margin: auto;
+    margin-top: 25px;
+}
+.example textarea{
+    padding: 5px;
+    height: 200px;
+    width: 600px;
+}

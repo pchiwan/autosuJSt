@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <title>Autosuggest Example 1</title>
+        <style>
+            body{
+                text-align: center;
+                padding: 20px 0 0 20px;
+                font-family: Calibri;
+                font-size: 16px;
+            }            
+            p{
+                width: 600px;
+                text-align: center;
+                margin: auto;
+                margin-top: 25px;
+            }
+            textarea{
+                padding: 5px;
+                height: 200px;
+                width: 600px;
+            }
+            .suggestionsContainer{
+                list-style: none;
+                text-align: left;
+                background-color: #fff;
+                border: 1px solid #ccc;
+                border-radius: 2px;
+                position: absolute;
+                min-width: 200px;
+                padding: 4px 0;
+                margin: 5px;
+            }
+            .suggestionsContainer li{
+                padding: 1px 6px;
+            }
+            .suggestionsContainer li.highlighted{
+                color: #fff;
+                background-color: #3d9af0;
+            }
+        </style>
+        <script type="text/javascript" src="jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="textareaCaretPosition.js"></script>
+        <script type="text/javascript" src="autosuggest.js"></script>
+        <script type="text/javascript">
+
+            var states = [
+                { name: 'Alabama'        , code: 'AL' },
+                { name: 'Alaska'         , code: 'AK' },
+                { name: 'Arizona'        , code: 'AZ' },
+                { name: 'Arkansas'       , code: 'AR' },
+                { name: 'California'     , code: 'CA' },
+                { name: 'Colorado'       , code: 'CO' },
+                { name: 'Connecticut'    , code: 'CT' },
+                { name: 'Delaware'       , code: 'DE' },
+                { name: 'Florida'        , code: 'FL' },
+                { name: 'Georgia'        , code: 'GA' },
+                { name: 'Hawaii'         , code: 'HI' },
+                { name: 'Idaho'          , code: 'ID' },
+                { name: 'Illinois'       , code: 'IL' },
+                { name: 'Indiana'        , code: 'IN' },
+                { name: 'Iowa'           , code: 'IA' },
+                { name: 'Kansas'         , code: 'KS' },
+                { name: 'Kentucky'       , code: 'KY' },
+                { name: 'Louisiana'      , code: 'LA' },
+                { name: 'Maine'          , code: 'ME' },
+                { name: 'Maryland'       , code: 'MD' },
+                { name: 'Massachusetts'  , code: 'MA' },
+                { name: 'Michigan'       , code: 'MI' },
+                { name: 'Minnesota'      , code: 'MN' },
+                { name: 'Mississippi'    , code: 'MS' },
+                { name: 'Missouri'       , code: 'MO' },
+                { name: 'Montana'        , code: 'MT' },
+                { name: 'Nebraska'       , code: 'NE' },
+                { name: 'Nevada'         , code: 'NV' },
+                { name: 'New Hampshire'  , code: 'NH' },
+                { name: 'New Jersey'     , code: 'NJ' },
+                { name: 'New Mexico'     , code: 'NM' },
+                { name: 'New York'       , code: 'NY' },
+                { name: 'North Carolina' , code: 'NC' },
+                { name: 'North Dakota'   , code: 'ND' },
+                { name: 'Ohio'           , code: 'OH' },
+                { name: 'Oklahoma'       , code: 'OK' },
+                { name: 'Oregon'         , code: 'OR' },
+                { name: 'Pennsylvania'   , code: 'PA' },
+                { name: 'Rhode Island'   , code: 'RI' },
+                { name: 'South Carolina' , code: 'SC' },
+                { name: 'South Dakota'   , code: 'SD' },
+                { name: 'Tennessee'      , code: 'TN' },
+                { name: 'Texas'          , code: 'TX' },
+                { name: 'Utah'           , code: 'UT' },
+                { name: 'Vermont'        , code: 'VT' },
+                { name: 'Virginia'       , code: 'VA' },
+                { name: 'Washington'     , code: 'WA' },
+                { name: 'West Virginia'  , code: 'WV' },
+                { name: 'Wisconsin'      , code: 'WI' },
+                { name: 'Wyoming'        , code: 'WY' }                
+            ];
+
+            window.onload = function () {
+                var oTextbox = new AutoSuggestControl(document.getElementById("txt1"), states, {
+                    displayKey: 'name',
+                    mappingFunc: function (sItem, iIndex) {
+                        return '<li' + (iIndex == 0 ? ' class="highlighted"' : '') + '>' + sItem.name + ' (' + sItem.code + ')' + '</li>'; 
+                    },
+                    matchingFunc: function (sItem, sCompare) {
+                        return sItem.name.toLowerCase().indexOf(sCompare.toLowerCase()) == 0;
+                    }
+                });
+            }
+        </script>
+
+    </head>
+    <body>
+        <div>
+            <p>This first example simply shows the &quot;type ahead&quot; functionality.
+            Type ahead involves placing a single suggestion into the textbox as the user types.
+            Only the part that the user didn't type is selected so that the user can
+            continue to type and get appropriate suggestions.</p>
+            <p>Type a state name into the textbox below. Make sure the state name begins
+            with a capital letter. The best example is to type &quot;Missouri&quot; one
+            letter at a time. You will get suggestions of &quot;Maine&quot;, &quot;Michigan&quot;,
+            &quot;Mississippi&quot;, and then finally &quot;Missouri&quot;.</p>
+            <p>Try it for yourself:</p>
+            <p><textarea id="txt1"></textarea></p>
+        <div>
+    </body>
+</html>
