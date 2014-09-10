@@ -1,0 +1,18 @@
+.suggestionsContainer{
+    list-style: none;
+    text-align: left;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    position: absolute;
+    min-width: 200px;
+    padding: 4px 0;
+    margin: 5px;
+}
+.suggestionsContainer li{
+    padding: 1px 6px;
+}
+.suggestionsContainer li.highlighted{
+    color: #fff;
+    background-color: #3d9af0;
+}
