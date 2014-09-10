@@ -6,11 +6,12 @@
     border-radius: 2px;
     position: absolute;
     min-width: 200px;
-    padding: 4px 0;
+    padding: 4px 0 !important;
     margin: 5px;
 }
 .suggestionsContainer li{
     padding: 1px 6px;
+    margin: 0 !important;
 }
 .suggestionsContainer li.highlighted{
     color: #fff;
