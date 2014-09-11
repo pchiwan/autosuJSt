@@ -49,7 +49,7 @@ First parameter you'll be providing to the constructor is the actual input that 
 
 ## Options
 
-You can customize AutosuJSt's behavior a bit by providing any of the following options on instantiation.
+You can customize `AutosuJSt`'s behavior a bit by providing any of the following options on instantiation.
 
 ### displayKey
 
@@ -82,10 +82,11 @@ When specifying your own matching function, make sure to provide it with two par
 
 ## Example
 
-Here's a complete example where we use an array of JavaScript objects as data source, and provide specific mapping and matching functions as well. This is the very definition of the AutosuJSt control you can play with in the Demo section.
+Here's a complete example where we use an array of JavaScript objects as data source, and provide specific mapping and matching functions as well. This is the very definition of the `AutosuJSt` control you can play with in the Demo section.
 
 ```javascript
 var oTextbox = document.getElementById("textarea1");
+
 var states = [
 	{ name: 'Alabama'        , code: 'AL' },
 	{ name: 'Alaska'         , code: 'AK' },
@@ -94,7 +95,8 @@ var states = [
 	{ name: 'West Virginia'  , code: 'WV' },
 	{ name: 'Wisconsin'      , code: 'WI' },
 	{ name: 'Wyoming'        , code: 'WY' }
-	];
+];
+
 new AutosuJSt(oTextbox, states, {
 	displayKey: 'name',
 	mappingFunc: function (sItem, iIndex) {
