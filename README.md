@@ -19,7 +19,7 @@ If you've used Excel, any IDE, or the console of pretty much any browser's devel
 
 So I started looking at the peak of the mountain, wondering where the heck I could start climbing it from. I turned to Google for some inspiration to get me rolling and I found exactly what I needed. I could not believe my eyes, it was JavaScript genius [Nicholas C. Zakas](http://www.nczonline.net) coming to my rescue, again!
 
-Several years ago Mr. Zakas published a great article on [how to create an autosuggest Textbox with JavaScript](http://oak.cs.ucla.edu/cs144/projects/javascript/suggest1.html), followed up by parts [2](http://oak.cs.ucla.edu/cs144/projects/javascript/suggest2.html) and [3](http://oak.cs.ucla.edu/cs144/projects/javascript/suggest3.html). I started building my `autosuJSt` control around Nicholas' source code, so a huge deal of the credit goes to him. Thanks Nick!
+Several years ago Mr. Zakas published a great article on [how to create an autosuggest Textbox with JavaScript](http://oak.cs.ucla.edu/cs144/projects/javascript/suggest1.html), followed up by parts [2](http://oak.cs.ucla.edu/cs144/projects/javascript/suggest2.html) and [3](http://oak.cs.ucla.edu/cs144/projects/javascript/suggest3.html). I started building my `AutosuJSt` control around Nicholas' source code, so a huge deal of the credit goes to him. Thanks Nick!
   
 # Shut up already. How does it work?
 
@@ -27,7 +27,7 @@ First of all I have to warn you that I messed the originally-very-simple code by
  
 ## Initialization
 
-Here's how you initialize AutosuJSt.
+Here's how you initialize an `AutosuJSt` control.
 
 ```javascript
 var oTextbox = document.getElementById("txt1");
@@ -42,8 +42,76 @@ var dataSource = [
     { name: 'Wyoming'        , code: 'WY' }                
 ];
 
-var oTextbox = new AutosuJSt(oTextbox, dataSource);
+new AutosuJSt(oTextbox, dataSource);
 ```
 
+First parameter you'll be providing to the constructor is the actual input that you want to bind `AutosuJSt`'s functionality to. The second parameter is the suggestions data source. This data source can either be a simple array of strings, or an array of JavaScript objects. If you choose to use an array of JavaScript objects, though, you will have to do a bit more of work to instantiate an `AutosuJSt` control. Keep reading to find out how.
+
 ## Options
+
+You can customize AutosuJSt's behavior a bit by providing any of the following options on instantiation.
+
+### displayKey
+
+When using an array of JavaScript objects as your suggestions data source, you must specify which object property holds the value to be used as suggestion.
+I.e.: For `{ name: 'New York', code: 'NY' }`, you would probably specify `displayKey: 'name'`.
+
+### mappingFunc
+
+This specifies the function that will be used to map data source items to suggestion list items. In other words, this is how you can provide your own markup for the suggestion list items. The default definition of the mapping function is as follows.
+
+```javascript
+function (sItem, iIndex) { 
+	return '<li' + (iIndex == 0 ? ' class="highlighted"' : '') + '>' + self.getValue(sItem) +'</li>';
+}
+```
+    
+When specifying your own mapping function, make sure to provide it with two parameters. The first one is the data source's item currently being mapped, and the second one is the index of that element in the data source.
+
+### matchingFunc
+
+This specifies the matching function that will be used to filter data source entries with the input text. The default definition of the matching function is as follows.
+
+```javascript
+function (sItem, rCompare) {
+	return rCompare.test(self.getValue(sItem));
+}
+```
+    
+When specifying your own matching function, make sure to provide it with two parameters. The first one is the entry of the data source being matched, and the second one is a regular expression (RegExp) of the input text.
+
+## Example
+
+Here's a complete example where we use an array of JavaScript objects as data source, and provide specific mapping and matching functions as well. This is the very definition of the AutosuJSt control you can play with in the Demo section.
+
+```javascript
+var oTextbox = document.getElementById("textarea1");
+var states = [
+	{ name: 'Alabama'        , code: 'AL' },
+	{ name: 'Alaska'         , code: 'AK' },
+	{ name: 'Arizona'        , code: 'AZ' },
+	...
+	{ name: 'West Virginia'  , code: 'WV' },
+	{ name: 'Wisconsin'      , code: 'WI' },
+	{ name: 'Wyoming'        , code: 'WY' }
+	];
+new AutosuJSt(oTextbox, states, {
+	displayKey: 'name',
+	mappingFunc: function (sItem, iIndex) {
+		return '<li' + (iIndex == 0 ? ' class="highlighted"' : '') + '>' + sItem.name + ' (' + sItem.code + ')' + '</li>'; 
+	},
+	matchingFunc: function (sItem, regExp) {
+		return regExp.test(sItem.name.toLowerCase());
+	}
+});
+```
+
+## Styling
+
+You can customize the suggestions container style by modifying my default stylesheet `autosujst.css`.
+
+# Demo
+
+You can play with my `AutosuJSt` control at this [jsFiddle](http://jsfiddle.net/pchiwan/gyb7wsju).
+
 

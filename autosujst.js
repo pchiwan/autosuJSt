@@ -17,15 +17,15 @@
  * @param aDataSource Array containing the suggestion list data source.
  * @param oOptions Dictionary of configuration options for the autosuggest control.
  * @@para displayKey
- *        When using a collection of objects as data source, this indicates which object key 
+ *        When using a collection of objects as data source, this specifies which object key 
  *        holds the value to be used as suggestion. 
           I.e.: For "{name: 'New York', code: 'NY'}", displayKey: 'name'
  * @@para mappingFunc 
- *        Function that will be used to map the data source items to suggestion list's items.
+ *        Function that will be used to map the data source items to suggestions list items.
  *        Parameter 1: Element of array.
  *        Parameter 2: Index in array.
  * @@para matchingFunc 
- *        Function that will be used to filter data source entries starting with the input text.
+ *        Function that will be used to filter data source entries with the input text.
  *        Parameter 1: Entry of the data source.
  *        Parameter 2: Regular expression (RegExp) of the input text.
  */
