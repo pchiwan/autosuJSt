@@ -13,11 +13,11 @@
   <link rel="stylesheet" href="stylesheets/pygment_trac.css">
   <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
   <link rel="stylesheet" href="stylesheets/autosujst.css">  
-  <link rel="stylesheet" href="https://rawgit.com/pchiwan/autosuJSt/master/autosujst.css">
+  <link rel="stylesheet" href="http://rawgit.com/pchiwan/autosuJSt/master/autosujst.css">
 
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-  <script type="text/javascript" src="https://rawgit.com/pchiwan/autosuJSt/master/textareaCaretPosition.js"></script>
-  <script type="text/javascript" src="https://rawgit.com/pchiwan/autosuJSt/master/autosujst.js"></script>
+  <script type="text/javascript" src="http://rawgit.com/pchiwan/autosuJSt/master/textareaCaretPosition.js"></script>
+  <script type="text/javascript" src="http://rawgit.com/pchiwan/autosuJSt/master/autosujst.js"></script>
   <script type="text/javascript" src="javascripts/script.js"></script>  
   <script type="text/javascript" src="javascripts/example.js"></script>  
 
@@ -67,7 +67,7 @@
 
   <p>So I started looking at the peak of the mountain, wondering where the heck I could start climbing it from. I turned to Google for some inspiration to get me rolling and I found exactly what I needed. I could not believe my eyes, it was JavaScript genius <a href="http://www.nczonline.net/">Nicholas C. Zakas</a> coming to my rescue, again!</p>
 
-  <p>Several years ago Mr. Zakas published a great article on <a href="http://oak.cs.ucla.edu/cs144/projects/javascript/suggest1.html">how to create an autosuggest Textbox with JavaScript</a>, followed up by parts <a href="http://oak.cs.ucla.edu/cs144/projects/javascript/suggest2.html">2</a> and <a href="http://oak.cs.ucla.edu/cs144/projects/javascript/suggest3.html">3</a>. I started building my <code>autosuJSt</code> control around Nicholas' source code, so a huge deal of the credit goes to him. Thanks Nick!</p>
+  <p>Several years ago Mr. Zakas published a great article on <a href="http://oak.cs.ucla.edu/cs144/projects/javascript/suggest1.html">how to create an autosuggest Textbox with JavaScript</a>, followed up by parts <a href="http://oak.cs.ucla.edu/cs144/projects/javascript/suggest2.html">2</a> and <a href="http://oak.cs.ucla.edu/cs144/projects/javascript/suggest3.html">3</a>. I started building my <code>AutosuJSt</code> control around Nicholas' source code, so a huge deal of the credit goes to him. Thanks Nick!</p>
 
   <h1>
   <a name="shut-up-already-how-does-it-work" class="anchor" href="#shut-up-already-how-does-it-work"><span class="octicon octicon-link"></span></a>Shut up already. How does it work?</h1>
@@ -75,15 +75,115 @@
   <p>First of all I have to warn you that I messed the originally-very-simple code by adding some dependencies (my bad, but I'm sure you can deal with it). First of all you'll need jQuery, and then also my own version of <a href="https://github.com/component/textarea-caret-position">textarea-caret-position</a> by <a href="https://github.com/jonathanong">Jonathan Ong</a> and <a href="https://github.com/dandv">Dan Dascalescu</a> at <a href="https://github.com/component">Components</a>, which extends jQuery with the method <code>getCaretCoords</code>. You can download it from my repository as well.
   </p>
 
-  <p>Ok, enough about me. Type the name of any USA state into the textarea. Once a state is highlighted in the suggestion list you can either type Tab, Enter, or Right Arrow to accept your selection. And then keep typing! You can throw in as many states as you want. And you can type whatever you please in between states as well: random letters, numbers, even carriage returns! But don't just take my word for it, try it! Go ahead!
-  </p>
+  <h2>
+  <a name="initialization" class="anchor" href="#initialization"><span class="octicon octicon-link"></span></a>Initialization</h2>
+
+  <p>Here's how you instantiate an <code>AutosuJSt</code> control.</p>
+  
+  <div class="highlight highlight-javascript">
+    <pre>
+      <span class="kd mleft">var</span> <span class="nx">oTextbox</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"textarea1"</span><span class="p">);</span>
+      <span class="kd mleft">var</span> <span class="nx">dataSource</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">'Alabama'</span><span class="p"> },</span>
+      <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">'Alaska'</span><span class="p"> },</span>
+      <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">'Arizona'</span><span class="p"> },</span>
+      <span class="p">...</span>
+      <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">'West Virginia'</span><span class="p"> },</span>
+      <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">'Wisconsin'</span><span class="p"> },</span>
+      <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">'Wyoming'</span><span class="p"> }</span>                
+      <span class="p mleft">];</span>
+      <span class="k mleft">new</span> <span class="nx">AutosuJSt</span><span class="p">(</span><span class="nx">oTextbox</span><span class="p">,</span> <span class="nx">dataSource</span><span class="p">);</span>
+    </pre>
+  </div>
+
+  <p>First parameter you'll be providing to the constructor is the actual input that you want to bind <code>AutosuJSt</code>'s functionality to. The second parameter is the suggestions data source. This data source can either be a simple array of strings, or an array of JavaScript objects. If you choose to use an array of JavaScript objects, though, you will have to do a bit more of work to instantiate an <code>AutosuJSt</code> control. Keep reading to find out how.
+
+  <h2>
+  <a name="options" class="anchor" href="#options"><span class="octicon octicon-link"></span></a>Options</h2>
+
+  <p>You can customize <code>AutosuJSt</code>'s behavior a bit by providing any of the following options on instantiation.</p>
+
+  <h3>
+  <a name="display-key" class="anchor" href="#display-key"><span class="octicon octicon-link"></span></a>displayKey</h3>
+
+  <p>When using an array of JavaScript objects as your suggestions data source, you must specify which object property holds the value to be used as suggestion.<br>I.e.: For <code>{ name: 'New York', code: 'NY' }</code>, you would probably specify <code>displayKey: 'name'</code>.</p>
+
+  <h3>
+  <a name="mapping-func" class="anchor" href="#mapping-func"><span class="octicon octicon-link"></span></a>mappingFunc</h3>
+
+  <p>This specifies the function that will be used to map data source items to suggestion list items. In other words, this is how you can provide your own markup for the suggestion list items. The default definition of the mapping function is as follows.</p>
+
+  <div class="highlight highlight-javascript">
+    <pre>
+      <span class="kd mleft">function</span> <span class="p">(</span><span class="nx">sItem</span><span class="p">,</span> <span class="nx">iIndex</span><span class="p">)</span> <span class="p">{</span> 
+      <span class="k">return</span> <span class="s1">'&lt;li'</span> <span class="o">+</span> <span class="p">(</span><span class="nx">iIndex</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="s1">' class="highlighted"'</span> <span class="o">:</span> <span class="s1">''</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'&gt;'</span> <span class="o">+</span> <span class="nx">self</span><span class="p">.</span><span class="nx">getValue</span><span class="p">(</span><span class="nx">sItem</span><span class="p">)</span> <span class="o">+</span><span class="s1">'&lt;/li&gt;'</span><span class="p">;</span>
+      <span class="p mleft">}</span>
+    </pre>
+  </div>
+
+  <p>When specifying your own mapping function, make sure to provide it with two parameters. The first one is the data source's item currently being mapped, and the second one is the index of that element in the data source.</p>
+
+  <h3>
+  <a name="matching-func" class="anchor" href="#matching-func"><span class="octicon octicon-link"></span></a>matchingFunc</h3>
+
+  <p>This specifies the matching function that will be used to filter data source entries with the input text. The default definition of the matching function is as follows.</p>
+
+  <div class="highlight highlight-javascript">
+    <pre>
+      <span class="kd mleft">function</span> <span class="p">(</span><span class="nx">sItem</span><span class="p">,</span> <span class="nx">rCompare</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">rCompare</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">getValue</span><span class="p">(</span><span class="nx">sItem</span><span class="p">));</span>
+      <span class="p mleft">}</span>
+    </pre>
+  </div>
+
+  <p>When specifying your own matching function, make sure to provide it with two parameters. The first one is the entry of the data source being matched, and the second one is a regular expression (RegExp) of the input text.</p>
+
+  <h2>
+  <a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
+
+  <p>Here's a complete example where we use an array of JavaScript objects as data source, and provide specific mapping and matching functions as well. This is the very definition of the <code>AutosuJSt</code> control you can play with in the <a href="#demo">Demo</a> section.</p>
+
+  <div class="highlight highlight-javascript">
+    <pre>
+      <span class="kd mleft">var</span> <span class="nx">oTextbox</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"textarea1"</span><span class="p">);</span>
+      <span class="kd mleft">var</span> <span class="nx">states</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">'Alabama'</span>        <span class="p">,</span> <span class="nx">code</span><span class="o">:</span> <span class="s1">'AL'</span> <span class="p">},</span>
+      <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">'Alaska'</span>         <span class="p">,</span> <span class="nx">code</span><span class="o">:</span> <span class="s1">'AK'</span> <span class="p">},</span>
+      <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">'Arizona'</span>        <span class="p">,</span> <span class="nx">code</span><span class="o">:</span> <span class="s1">'AZ'</span> <span class="p">},</span>
+      <span class="p">...</span>
+      <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">'West Virginia'</span>  <span class="p">,</span> <span class="nx">code</span><span class="o">:</span> <span class="s1">'WV'</span> <span class="p">},</span>
+      <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">'Wisconsin'</span>      <span class="p">,</span> <span class="nx">code</span><span class="o">:</span> <span class="s1">'WI'</span> <span class="p">},</span>
+      <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">'Wyoming'</span>        <span class="p">,</span> <span class="nx">code</span><span class="o">:</span> <span class="s1">'WY'</span> <span class="p">}</span>
+      <span class="p mleft">];</span>
+      <span class="k mleft">new</span> <span class="nx">AutosuJSt</span><span class="p">(</span><span class="nx">oTextbox,</span> <span class="nx">states</span><span class="p">,</span> <span class="p">{</span>
+      <span class="nx">displayKey</span><span class="o">:</span> <span class="s1">'name'</span><span class="p">,</span>
+      <span class="nx">mappingFunc</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">sItem</span><span class="p">,</span> <span class="nx">iIndex</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k mleft2">return</span> <span class="s1">'&lt;li'</span> <span class="o">+</span> <span class="p">(</span><span class="nx">iIndex</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="s1">' class="highlighted"'</span> <span class="o">:</span> <span class="s1">''</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'&gt;'</span> <span class="o">+</span> <span class="nx">sItem</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">' ('</span> <span class="o">+</span> <span class="nx">sItem</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s1">')'</span> <span class="o">+</span> <span class="s1">'&lt;/li&gt;'</span><span class="p">;</span> 
+      <span class="p">},</span>
+      <span class="nx">matchingFunc</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">sItem</span><span class="p">,</span> <span class="nx">regExp</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k mleft2">return</span> <span class="nx">regExp</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">sItem</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">());</span>
+      <span class="p">}</span>
+      <span class="p mleft">});</span>
+    </pre>
+  </div>
+
+  <h2>
+  <a name="styling" class="anchor" href="#styling"><span class="octicon octicon-link"></span></a>Styling</h2>
+
+  <p>You can customize the suggestions container style by modifying my default stylesheet <code>autosujst.css</code>.</p>
+
+  <h1>
+  <a name="demo" class="anchor" href="#demo"><span class="octicon octicon-link"></span></a>Demo</h1>
+
+  <p>Ok, enough talking, let's play with it shall we?</p>
+
+  <p>Type the name of any USA state into the textarea. Once a state is highlighted in the suggestions list you can use the Down Arrow and Up Arrow keys to move from one suggestion item to the next or the previous one. You can either type Tab, Enter, or Right Arrow to accept your selection. And then keep typing! You can throw in as many states as you want. And you can type whatever you please in between states as well: random letters, numbers, even carriage returns! But don't just take my word for it, try it! Go ahead!</p>
 
   <p class="example">
     <textarea id="txt1"></textarea>
   </p>
 
-  <h1>
-  <a name="demo" class="anchor" href="#demo"><span class="octicon octicon-link"></span></a>Demo</h1>
+  <p>Did you like it? Do you want to take over the reins? Go to this <a href="http://jsfiddle.net/pchiwan/gyb7wsju/">jsFiddle</a> and play a bit more!</p>
           </article>
         </div>
       </div>
@@ -96,7 +196,7 @@
 
         </div>
         <div class="creds">
-          <small>This page generated using <a href="http://pages.github.com/">GitHub Pages</a><br>Theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a> and modified by yours truly</small>
+          <small>This page generated using <a href="http://pages.github.com/">GitHub Pages</a><br>Theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a> / modified by yours truly</small>
         </div>
       </div>
     </div>

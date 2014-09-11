@@ -61,7 +61,7 @@ $(document).ready(function () {
             return '<li' + (iIndex == 0 ? ' class="highlighted"' : '') + '>' + sItem.name + ' (' + sItem.code + ')' + '</li>'; 
         },
         matchingFunc: function (sItem, regExp) {
-            return sItem.name.toLowerCase().match(regExp);
+            return regExp.test(sItem.name.toLowerCase());
         }
     });
 });
