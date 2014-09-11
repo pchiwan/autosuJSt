@@ -1,4 +1,4 @@
-autosuJSt
+AutosuJSt
 =========
 
 An autosuggest control on steroids
