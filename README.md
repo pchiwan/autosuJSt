@@ -9,11 +9,11 @@ I love challenges. Soon after I started working at a new company my PM expressed
 
 # Challenge accepted
 
-"Oh c'mon, yet another autosuggest control? That is nothing new in the JS world!" I hear you say. You're right, there are literally dozens of really cool tools already implemented out there, such as jQuery's own [Autocomplete](http://jqueryui.com/autocomplete/), [typeahead.js](https://twitter.github.io/typeahead.js), or [select2](http://ivaynberg.github.io/select2), to mention just a few. But, even with their particular features and differences, they all work pretty much the same: provide the user with a list of possible values as she types, and allow her to select one of them. See what's missing? Select **ONE** of them.
+_"Oh c'mon, yet another autosuggest control? That is nothing new in the JS world!"_ I hear you say. You're right, there are literally dozens of really cool tools already implemented out there, such as jQuery's own [Autocomplete](http://jqueryui.com/autocomplete/), [typeahead.js](https://twitter.github.io/typeahead.js), or [select2](http://ivaynberg.github.io/select2), to mention just a few. But, even with their particular features and differences, they all work pretty much the same: provide the user with a list of possible values as she types, and allow her to select one of them. See what's missing? Select **ONE** of them.
 
 ## IntelliSense wannabe
 
-If you've used Excel, any IDE, or the console of pretty much any browser's developer tools, you know what [intelligent code completion](http://en.wikipedia.org/wiki/Intelligent_code_completion) is. I wanted my control to work similarly, providing this suggestion-and.autocompletion functionality not once but permanently.
+If you've used Excel, any IDE, or the console of pretty much any browser's developer tools, you know what [intelligent code completion](http://en.wikipedia.org/wiki/Intelligent_code_completion) is. I wanted my control to work similarly, providing this _suggestion and autocompletion_ functionality not once but permanently.
 
 # Implementation
 
